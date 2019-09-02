@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SpeedometerTask</string>
+
+    <string name="google_maps_key">AIzaSyAQ5lDWC8IZHesNML8mwZ4Sj8uUfTajeWU</string>
+    <string name="speed_type_km">km / h</string>
+    <string name="max_speed">max</string>
+    <string name="map_icon_description">Map</string>
+    <string name="speed_type_mil">mil / h</string>
+    <string name="clear_icon_description">Clear Icon</string>
+</resources>

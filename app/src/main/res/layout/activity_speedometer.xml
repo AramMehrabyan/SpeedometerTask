@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/root_background"
+        tools:context=".ui.speedometer.SpeedometerActivity">
+
+        <ImageView
+            android:id="@+id/mapIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp10"
+            android:contentDescription="@string/map_icon_description"
+            android:onClick="@{() -> viewmodel.openMap()}"
+            android:src="@drawable/map_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/clearIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp50"
+            android:layout_marginEnd="@dimen/dp10"
+            android:contentDescription="@string/clear_icon_description"
+            android:onClick="@{() -> viewmodel.clearResults()}"
+            android:src="@drawable/delete_circle"
+            app:layout_constraintBottom_toBottomOf="@id/speedView"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rGroupType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/speedView">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{viewmodel.rbKm}"
+                android:onClick="@{() -> viewmodel.rbKmClick()}"
+                android:text="@string/speed_type_km"
+                android:textColor="@color/type_color" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp50"
+                android:checked="@{viewmodel.rbMil}"
+                android:onClick="@{() -> viewmodel.rbMilClick()}"
+                android:text="@string/speed_type_mil"
+                android:textColor="@color/type_color" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_speed_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp35"
+            android:layout_marginEnd="@dimen/dp20"
+            android:padding="@dimen/dp10"
+            android:text="@{viewmodel.speedType}"
+            android:textColor="@color/type_color"
+            android:textSize="@dimen/text_size_25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rGroupType" />
+
+        <TextView
+            android:id="@+id/tv_speed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
+            android:background="@drawable/textview_bg"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/dp10"
+            android:text="@{viewmodel.speed}"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_size_25sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_speed_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_speed_type" />
+
+        <TextView
+            android:id="@+id/tv_max_speed_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp35"
+            android:layout_marginEnd="@dimen/dp20"
+            android:padding="@dimen/dp10"
+            android:text="@string/max_speed"
+            android:textColor="@color/type_color"
+            android:textSize="@dimen/text_size_25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tv_speed_type"
+            app:layout_constraintTop_toBottomOf="@id/tv_speed_type" />
+
+        <TextView
+            android:id="@+id/tv_max_speed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
+            android:background="@drawable/textview_bg"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text="@{viewmodel.maxSpeed}"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_size_25sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_max_speed_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_max_speed_type" />
+
+        <TextView
+            android:id="@+id/tv_distance_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp35"
+            android:padding="@dimen/dp10"
+            android:text="@{viewmodel.allDistanceType}"
+            android:textColor="@color/type_color"
+            android:textSize="@dimen/text_size_25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tv_max_speed_type"
+            app:layout_constraintTop_toBottomOf="@id/tv_max_speed_type" />
+
+        <TextView
+            android:id="@+id/tv_distance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
+            android:background="@drawable/textview_bg"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/dp10"
+            android:text="@{viewmodel.allDistance}"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_size_25sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_max_speed_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_distance_type" />
+
+        <de.nitri.gauge.Gauge
+            android:id="@+id/speedView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp20"
+            app:faceColor="@color/face_color"
+            app:labelTextSize="42"
+            app:layout_constraintEnd_toStartOf="@id/mapIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lowerText="@{viewmodel.speedType}"
+            app:maxValue="30"
+            app:minValue="0"
+            app:needleColor="@color/needle_color"
+            app:scaleColor="@color/scale_color"
+            app:totalNicks="150"
+            app:valuePerNick="0.3"
+            app:valueSpeed="@{viewmodel.speed}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.speedometertask.ui.speedometer.SpeedometerViewModel" />
+    </data>
+
+</layout>
